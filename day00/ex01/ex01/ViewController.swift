@@ -15,6 +15,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    var txt = "";
+    @IBOutlet weak var textLabel: UILabel!
+    @IBAction func clickMeTapped(_ sender: Any) {
+        print("Hello World !")
+        if (txt == "") {
+            txt = "Hello World !"
+        }
+        else {
+            txt = ""
+        }
+        textLabel.text = txt
+    }
 }
 
