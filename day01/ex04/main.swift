@@ -17,23 +17,24 @@ x = testDeck.draw()
 x = nil
 
 print("")
-for i in testDeck.outs {
-	    print("outs[i] = \(i)")
+for (i, elem) in testDeck.outs.enumerated() {
+	    print("outs[\(i)] = \(elem)")
 }
-print("")
+print("Total cards in outs: \(testDeck.outs.count)\n")
 testDeck.fold(c: testDeck.outs[0])
 testDeck.fold(c: testDeck.outs[1])
 testDeck.fold(c: testDeck.outs[2])
 testDeck.fold(c: testDeck.outs[3])
 
-for i in testDeck.discards {
-	    print("discards[i] = \(i)")
+for (i, elem) in testDeck.discards.enumerated() {
+	    print("discards[\(i)] = \(elem)")
 }
-print("")
-for i in testDeck.outs {
-	    print("outs[i] = \(i)")
+print("Total cards in discarded: \(testDeck.discards.count)\n")
+for (i, elem) in testDeck.outs.enumerated() {
+	    print("outs[\(i)] = \(elem)")
 }
-print("")
+print("Total cardds in outs: \(testDeck.outs.count)\n")
 for i in testDeck.cards {
 	  print(i)
 }
+print("Total cards in deck: \(testDeck.cards.count)")
