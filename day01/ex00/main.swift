@@ -1,10 +1,10 @@
-var arrValue: [Value] = Value.allValues
-var arrColor: [Color] = Color.allColors
+var colours: [Color] = Color.allColors
+var values: [Value] = Value.allValues
 
-for elem in arrColor {
-    print("\(elem) = \(elem.rawValue)")
+for elem in colours {
+    print("\(elem) = \(elem.rawValue)") //String interpolation done using \() in swift
 }
 
-for elem in arrValue {
+for elem in values {
     print("\(elem) = \(elem.rawValue)")
 }

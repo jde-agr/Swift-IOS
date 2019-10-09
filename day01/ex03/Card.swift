@@ -1,27 +1,30 @@
-import Foundation
+import Foundation //In order to make use of NSObject
 
 class Card: NSObject {
-    var color: Color
+    var colour: Color
     var value: Value
     
-    init(Color color: Color, Value value: Value) {
-        self.color = color
+    init(Color colour: Color, Value value: Value) { //Argument_label parameter_name: Type
+        self.colour = colour
         self.value = value
-        super.init()
     }
 
     override var description: String {
-        return "\(self.value) of \(self.color)"
+        if (self.colour == Color.hearts) { return "\u{001B}[0;32m\(self.value) of \(self.colour)\u{001B}[0;37m" }
+        else if (self.colour == Color.clubs) { return "\u{001B}[0;33m\(self.value) of \(self.colour)\u{001B}[0;37m" }
+        else if (self.colour == Color.diamonds) { return "\u{001B}[0;34m\(self.value) of \(self.colour)\u{001B}[0;37m" }
+        else if (self.colour == Color.spades) { return "\u{001B}[0;35m\(self.value) of \(self.colour)\u{001B}[0;37m" }
+        else { return "\(self.value) of \(self.colour)" }
     }
     
     override func isEqual(_ object: Any?) -> Bool {
         if let object = object as? Card {
-            return (self.color == object.color && self.value == object.value)
+            return (self.colour == object.colour && self.value == object.value)
         }
         return (false)
     }
 }
 
-func ==(frst: Card, scnd: Card) -> Bool {
-    return (frst.color == scnd.color && frst.value == scnd.value)
+func ==(first: Card, second: Card) -> Bool {
+    return (first.colour == second.colour && first.value == second.value)
 }

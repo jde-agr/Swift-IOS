@@ -1,14 +1,11 @@
+import Foundation
 print("All Hearts:")
-print(Deck.allHearts)
-print("All Spades:")
-print(Deck.allSpades)
-print("")
-print("All Diamonds:")
-print(Deck.allDiamonds)
-print("")
-print("")
-print("All Clubs:")
-print(Deck.allClubs)
-print("")
-print("All Cards:")
-print(Deck.allCards)
+for elem in Deck.allHearts {print(elem)} 
+print("\nAll Spades:")
+for elem in Deck.allSpades {print(elem)} 
+print("\nAll Diamonds:")
+for elem in Deck.allDiamonds {print(elem)}
+print("\nAll Clubs:")
+for elem in Deck.allClubs {print(elem)} 
+print("\nAll Cards:")
+for elem in Deck.allCards {print(elem)} 
