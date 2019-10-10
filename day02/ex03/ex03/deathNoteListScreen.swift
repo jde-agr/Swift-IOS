@@ -43,14 +43,12 @@ class deathNoteListScreen: UIViewController {
     }
 
     @IBAction func done(segue:UIStoryboardSegue) {
-         let carDetailVC = segue.source as! addDeathNodeScreen
-        print(carDetailVC.dNote!.name)
-//         newCar = carDetailVC.name
-        deathNotes.append(carDetailVC.dNote!)
-            
-//         cars.append(newCar)
-         tbView.reloadData()
-        
+       let carDetailVC = segue.source as! addDeathNodeScreen
+       if (carDetailVC.dNote != nil && carDetailVC.dNote!.name != "") {
+            print(carDetailVC.dNote!.name)
+            deathNotes.append(carDetailVC.dNote!)
+            tbView.reloadData()
+       } 
     }
 }
 
