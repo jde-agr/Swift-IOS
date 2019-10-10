@@ -43,14 +43,12 @@ class deathNoteListScreen: UIViewController {
     }
 
     @IBAction func done(segue:UIStoryboardSegue) {
-         let carDetailVC = segue.source as! addDeathNodeScreen
-        print(carDetailVC.dNote!.name)
-//         newCar = carDetailVC.name
-        deathNotes.append(carDetailVC.dNote!)
-            
-//         cars.append(newCar)
-         tbView.reloadData()
-        
+       let carDetailVC = segue.source as! addDeathNodeScreen
+       if (carDetailVC.dNote != nil && carDetailVC.dNote!.name != "") {
+            print(carDetailVC.dNote!.name)
+            deathNotes.append(carDetailVC.dNote!)
+            tbView.reloadData()
+       } 
     }
 }
 
@@ -63,6 +61,14 @@ extension deathNoteListScreen: UITableViewDataSource, UITableViewDelegate {
         let deathNote = deathNotes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeathNoteCell") as! deathNoteCell
         cell.setDeathNote(deathNote: deathNote)
+        let number = (indexPath.row % 2)
+        let result = Bool(truncating: number as NSNumber)
+        if(result) {
+            cell.backgroundColor = .red
+        }
+        else {
+            cell.backgroundColor = .green;
+        }
         return cell
     }
 }
