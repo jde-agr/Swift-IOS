@@ -11,8 +11,12 @@ import UIKit
 class addDeathNodeScreen: UIViewController {
     
     
+    @IBOutlet weak var inputName: UITextField!
+    @IBOutlet weak var inputDesc: UITextView!
+    
     @IBOutlet weak var datePickerLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
@@ -28,5 +32,11 @@ class addDeathNodeScreen: UIViewController {
        dateFormatter.dateStyle = DateFormatter.Style.medium
        let strDate = dateFormatter.string(from: datePicker.date)
        datePickerLabel.text = strDate
+    }
+    
+    @IBAction func printDetails(_ sender: Any) {
+        print("Name: \(inputName.text!)")
+        print("Desc: \(inputDesc.text!)")
+        print("Date: \(datePickerLabel.text!)")
     }
 }

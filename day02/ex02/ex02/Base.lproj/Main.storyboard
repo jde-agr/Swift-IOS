@@ -203,10 +203,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Jg-qi-1wv"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Death Note" id="yhO-7E-5dI"/>
+                    <navigationItem key="navigationItem" title="Add Death Note" id="yhO-7E-5dI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="keR-co-aIk">
+                            <connections>
+                                <action selector="printDetails:" destination="ypg-rK-qmG" id="vVb-wK-594"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="jP7-u9-yUf" id="pTB-1I-UF2"/>
                         <outlet property="datePickerLabel" destination="WmL-nG-hce" id="5iE-UP-lzx"/>
+                        <outlet property="doneButton" destination="keR-co-aIk" id="eBr-aH-Zuu"/>
+                        <outlet property="inputDesc" destination="3Jj-Sw-yTx" id="f0S-1p-RgJ"/>
+                        <outlet property="inputName" destination="r9Y-vU-EX2" id="EeH-v0-wSi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7L-G8-TLE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
