@@ -10,8 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let data: [UIImage] = [
-        #imageLiteral(resourceName: "pic1"), #imageLiteral(resourceName: "pic2"), #imageLiteral(resourceName: "pic3"), #imageLiteral(resourceName: "pic4")
+    var images_cache = [String:UIImage]()
+    var images: [String] = [
+//        "ddd",
+    "https://www.nasa.gov/sites/default/files/styles/ubernode_alt_horiz/public/thumbnails/image/iss059e111688.jpg",
+    "https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/ksc-20190927-ph-mtd01_0086_large.jpg",
+    "https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/ssc2019-15b_med.jpg",
+    "https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/iss060e080405_large.jpg",
+    "https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+    "https://images.pexels.com/photos/2734512/pexels-photo-2734512.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/186980/pexels-photo-186980.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        
+        "http://dsd.jpg"
     ]
 
     fileprivate let collectionView: UICollectionView = {
@@ -47,31 +57,76 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-//        cell.backgroundColor = .red
-        cell.data = self.data[indexPath.row]
+        let activityView = UIActivityIndicatorView(style: .large)
+        activityView.center = cell.contentView.center
+        cell.contentView.addSubview(activityView)
+        activityView.startAnimating()
+        if (images_cache[images[indexPath.row]] != nil)
+        {
+            print("nnoo")
+            cell.bg.image = images_cache[images[indexPath.row]]
+        }
+        else
+        {
+            print("yeess")
+            load_image(images[indexPath.row], imageview:cell.bg, activityView:activityView)
+        }
         return cell
     }
     
-    
+    func load_image(_ link:String, imageview:UIImageView, activityView: UIActivityIndicatorView) {
+        let url:URL = URL(string: link)!
+        let session = URLSession.shared
+        
+        let request = NSMutableURLRequest(url: url)
+        request.timeoutInterval = 10
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+
+            guard let _:Data = data, let _:URLResponse = response, error == nil else {
+                print("popo")
+                DispatchQueue.main.async {
+                    activityView.stopAnimating()
+                    imageview.image = UIImage(imageLiteralResourceName: "error.png")
+                    let alert = UIAlertController(title: "ERROR", message: "Could not download image from \(link)", preferredStyle: .alert)
+
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+                    if self.presentedViewController == nil {
+                        self.present(alert, animated: true)
+//                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                return
+            }
+                
+            var image = UIImage(data: data!)
+            print(data)
+            if (image != nil)
+            {
+                func set_image()
+                {
+                    self.images_cache[link] = image
+                    imageview.image = image
+                    let container: UIView = UIView()
+                    imageview.addSubview(container)
+                    activityView.stopAnimating()
+                }
+                DispatchQueue.main.async(execute: set_image)
+            }
+        })
+        task.resume()
+    }
 }
 
 class CustomCell: UICollectionViewCell {
-    
-    var data: UIImage? {
-        didSet {
-            guard let data = data else { return }
-            bg.image = data
-        }
-    }
-    
     fileprivate let bg: UIImageView = {
         let iv = UIImageView()
-//        iv.image = #imageLiteral(resourceName: "ansgar-scheffold-QvYWDg0CVJs-unsplash")
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
