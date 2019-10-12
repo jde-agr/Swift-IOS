@@ -29,9 +29,7 @@ class APIController {
         self.token = token
     }
     
-    func makeRequest(string: String) {
-        //insert code for twitter request
-    }
+    
 }
 
 class ViewController: UIViewController {
@@ -41,6 +39,40 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func butClick(_ sender: UIButton) {
+        makeRequest(string: "school 42")
+    }
+    
+    func makeRequest(string: String) {
+            //insert code for twitter request
+        let q = string.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let str = "https://api.twitter.com/1.1/search/tweets.json?q=\(q)&count=100&lang=en&result_type=recent"
+            let url = URL(string: str)
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            request.setValue("Bearer AAAAAAAAAAAAAAAAAAAAACxLAQEAAAAA3e1hR1XXxwMQx1lLTRgNKAD7UyM%3DsnmfkPJ0YZEF5TpFmQoWOTVSdnqXR7hoEYDvoI8Fy0uwY2E9in", forHTTPHeaderField: "Authorization")
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("error: \(error)")
+                } else {
+                    if let response = response as? HTTPURLResponse {
+                        print("statusCode: \(response.statusCode)")
+                    }
+                    if let data = data {
+//                        print("data: \(dataString)")
+                        let jData = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let jData = jData as? [String: Any] {
+//                            print(jData["statuses"]!)
+                            var count = 0
+                            for elem in jData["statuses"] as! NSArray {
+                                print(elem)
+                                count += 1
+                            }
+                            print("Number of results: \(count)")
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
 }
-
