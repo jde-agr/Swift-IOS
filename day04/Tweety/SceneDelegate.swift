@@ -1,9 +1,9 @@
 //
 //  SceneDelegate.swift
-//  ex00
+//  Tweety
 //
-//  Created by jasmine DE-AGRELA on 2019/10/12.
-//  Copyright © 2019 jde-agr. All rights reserved.
+//  Created by Ryan DE KWAADSTENIET on 2019/10/12.
+//  Copyright © 2019 Ryan DE KWAADSTENIET. All rights reserved.
 //
 
 import UIKit
