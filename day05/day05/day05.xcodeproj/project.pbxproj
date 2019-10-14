@@ -14,6 +14,7 @@
 		BE1C88B823546F6C00D7C455 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1C88B623546F6C00D7C455 /* Main.storyboard */; };
 		BE1C88BA23546F7A00D7C455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1C88B923546F7A00D7C455 /* Assets.xcassets */; };
 		BE1C88BD23546F7A00D7C455 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1C88BB23546F7A00D7C455 /* LaunchScreen.storyboard */; };
+		BE1C88C5235482C800D7C455 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1C88C4235482C800D7C455 /* LocationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		BE1C88B923546F7A00D7C455 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE1C88BC23546F7A00D7C455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE1C88BE23546F7A00D7C455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE1C88C4235482C800D7C455 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				BE1C88B223546F6C00D7C455 /* FirstViewController.swift */,
 				BE1C88B423546F6C00D7C455 /* SecondViewController.swift */,
 				BE1C88B623546F6C00D7C455 /* Main.storyboard */,
+				BE1C88C4235482C800D7C455 /* LocationCell.swift */,
 				BE1C88B923546F7A00D7C455 /* Assets.xcassets */,
 				BE1C88BB23546F7A00D7C455 /* LaunchScreen.storyboard */,
 				BE1C88BE23546F7A00D7C455 /* Info.plist */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE1C88B523546F6C00D7C455 /* SecondViewController.swift in Sources */,
+				BE1C88C5235482C800D7C455 /* LocationCell.swift in Sources */,
 				BE1C88B323546F6C00D7C455 /* FirstViewController.swift in Sources */,
 				BE1C88AF23546F6C00D7C455 /* AppDelegate.swift in Sources */,
 				BE1C88B123546F6C00D7C455 /* SceneDelegate.swift in Sources */,
