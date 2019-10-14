@@ -28,6 +28,16 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBAction func changeMapType(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            mapView.mapType = .standard
+        } else if sender.selectedSegmentIndex == 1 {
+            mapView.mapType = .satellite
+        } else {
+            mapView.mapType = .hybrid
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
