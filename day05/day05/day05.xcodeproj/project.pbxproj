@@ -15,6 +15,7 @@
 		BE1C88BA23546F7A00D7C455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1C88B923546F7A00D7C455 /* Assets.xcassets */; };
 		BE1C88BD23546F7A00D7C455 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1C88BB23546F7A00D7C455 /* LaunchScreen.storyboard */; };
 		BE1C88C5235482C800D7C455 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1C88C4235482C800D7C455 /* LocationCell.swift */; };
+		BE1C88CA2354D49100D7C455 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1C88C92354D49100D7C455 /* BaseTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		BE1C88BE23546F7A00D7C455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1C88C4235482C800D7C455 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		BE1C88C82354C5E100D7C455 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		BE1C88C92354D49100D7C455 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				BE1C88B223546F6C00D7C455 /* FirstViewController.swift */,
 				BE1C88B423546F6C00D7C455 /* SecondViewController.swift */,
 				BE1C88B623546F6C00D7C455 /* Main.storyboard */,
+				BE1C88C92354D49100D7C455 /* BaseTabBarViewController.swift */,
 				BE1C88C82354C5E100D7C455 /* Location.gpx */,
 				BE1C88C4235482C800D7C455 /* LocationCell.swift */,
 				BE1C88B923546F7A00D7C455 /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				BE1C88B323546F6C00D7C455 /* FirstViewController.swift in Sources */,
 				BE1C88AF23546F6C00D7C455 /* AppDelegate.swift in Sources */,
 				BE1C88B123546F6C00D7C455 /* SceneDelegate.swift in Sources */,
+				BE1C88CA2354D49100D7C455 /* BaseTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

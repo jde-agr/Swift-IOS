@@ -17,11 +17,13 @@ class CustomPin: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var type: String?
     
-    init(pinTitle: String, pinSubTitle: String, location: CLLocationCoordinate2D) {
+    init(pinTitle: String, pinSubTitle: String, location: CLLocationCoordinate2D, pinType: String) {
         self.title = pinTitle
         self.subtitle = pinSubTitle
         self.coordinate = location
+        self.type = pinType
     }
 }
 
@@ -30,6 +32,10 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
     let regionInMeters: Double = 1000
+    let userRegionInMeters: Double = 1000
+    var selectedLocation: String = ""
+    var pinnedLocations: [CustomPin] = []
+    
     
     @IBAction func changeMapType(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -43,23 +49,20 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-//        self.locationManager.requestWhenInUseAuthorization()
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-////            locationManager.startUpdatingLocation()
-////            print("Is this thing on?")
-//        }
-        checkLocationServices()
-        
-        let location = CLLocationCoordinate2D(latitude: -33.9071, longitude: 18.4173)
-        let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-        self.mapView.setRegion(region, animated: true)
-        let pin = CustomPin(pinTitle: "WeThinkCode_ Cape Town", pinSubTitle: "Cape Town Campus", location: location)
-        self.mapView.addAnnotation(pin)
+        let tabbar = tabBarController as! BaseTabBarViewController
+//        print("This selected location \(tabbar.selectedLocation)\n\n")
+//        print("Table \(tabbar.pinnedLocations)")
+        checkLocationServices(tabbar: tabbar)
+        for elem in tabbar.pinnedLocations {
+            self.mapView.addAnnotation(elem)
+        }
         self.mapView.delegate = self
+        print("Location selected: \(selectedLocation)")
+        if (tabbar.selectedPin != nil) {
+            let center = tabbar.selectedPin!.coordinate
+            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -67,9 +70,29 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             return nil
         }
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customannotation")
-        annotationView.image = UIImage(named: "pin_blue")
+//        print("Annotation stuff: \(annotation)")
+        let pin = annotation as! CustomPin
+        if pin.type == "Education" {
+            annotationView.image = UIImage(named: "pika")
+        } else if pin.type == "Nature" {
+            annotationView.image = UIImage(named: "bulba")
+        } else if pin.type == "Historical" {
+            annotationView.image = UIImage(named: "squirt")
+        } else {
+            annotationView.image = UIImage(named: "charm")
+        }
         annotationView.canShowCallout = true
         return annotationView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let tabbar = tabBarController as! BaseTabBarViewController
+        print("This selected location \(tabbar.selectedLocation)")
+        if (tabbar.selectedPin != nil) {
+            let center = tabbar.selectedPin!.coordinate
+            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func setUpLocationManager() {
@@ -77,26 +100,27 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func checkLocationServices() {
+    func checkLocationServices(tabbar: BaseTabBarViewController) {
         if CLLocationManager.locationServicesEnabled() {
             setUpLocationManager()
-            checkLocationAuthorization()
+            checkLocationAuthorization(tabbar: tabbar)
             print("Location enabled")
         } else {
             print("Location NOT enabled")
         }
     }
     
-    func checkLocationAuthorization() {
+    func checkLocationAuthorization(tabbar: BaseTabBarViewController) {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways:
             break
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            print("This is in use")
-//            centerViewOnUserLocation()
+            if (tabbar.selectedPin == nil) {
+                centerViewOnUserLocation()
+                locationManager.startUpdatingLocation()
+            }
+//            print("This is in use")
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -104,12 +128,14 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             break
         case .denied:
             break
+        @unknown default:
+            break
         }
     }
     
     func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: userRegionInMeters, longitudinalMeters: userRegionInMeters)
             mapView.setRegion(region, animated: true)
         }
     }
@@ -123,14 +149,11 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
-//        let locVal: CLLocationCoordinate2D = manager.location!.coordinate
-//        let userLoc = locations.last
-//        let viewRegion = MKCoordinateRegion(center: (userLoc?.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-//        self.mapView.setRegion(viewRegion, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
+        let tabbar = tabBarController as! BaseTabBarViewController
+        checkLocationAuthorization(tabbar: tabbar)
     }
 
 
