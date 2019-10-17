@@ -12,6 +12,8 @@ import RecastAI
 class ViewController: UIViewController {
 
     @IBOutlet weak var recastButton: UIButton!
+    @IBOutlet weak var inputWeather: UITextField!
+    @IBOutlet weak var outputWeather: UILabel!
     
     let bot = RecastAIClient(token: "c4bba4ece1d139943e1d1ea630219ddb", language: "en")
     
@@ -23,18 +25,37 @@ class ViewController: UIViewController {
     
     
     @IBAction func recastButtonPressed(_ sender: UIButton) {
-        makeRequest()
+        if (inputWeather.text != "") {
+            makeRequest(weather: inputWeather.text!)
+        } else {
+            outputWeather.text = "Invalid input for weather"
+        }
     }
     
-    func makeRequest() {
-        self.bot.textRequest("What'll be the weather in London next Thursday?", successHandler: recastRequestDone(_:), failureHandle: recastRequestFailed(_:))
+    //inputWeather: String
+    func makeRequest(weather: String) {
+        self.bot.textRequest(weather, successHandler: recastRequestDone(_:), failureHandle: recastRequestFailed(_:))
         
     }
     
     func recastRequestDone(_ response : Response)
     {
+        var toPrint: String = ""
+        let datetime = response.get(entity: "datetime")
         let location = response.get(entity: "location")
-        print(location!["latitude"])
+        print("Stuff \(response)")
+//        outputWeather.text = location!["city"] as! String
+        if (datetime != nil) {
+            let formatted = datetime!["formatted"] as! String
+            toPrint += "\(formatted)"
+        }
+        if (location != nil) {
+            toPrint += "\n\(location!["city"] as! String)"
+        }
+        if toPrint == "" {
+            toPrint = "No data available"
+        }
+        outputWeather.text = toPrint
     }
     
     func recastRequestFailed(_ error: Error)
