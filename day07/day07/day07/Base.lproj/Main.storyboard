@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="day07" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-Nh-08I">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-iC-pdY">
+                                        <rect key="frame" x="183.5" y="94" width="47" height="30"/>
+                                        <state key="normal" title="Recast"/>
+                                        <connections>
+                                            <action selector="recastButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cfx-BS-M1D"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u11-AK-AgS">
+                                        <rect key="frame" x="20" y="252" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULT-Sp-PIg">
+                                        <rect key="frame" x="20" y="399" width="374" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1Wj-iC-pdY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Prb-Nh-08I" secondAttribute="leading" id="28A-ge-2ji"/>
+                                    <constraint firstItem="u11-AK-AgS" firstAttribute="leading" secondItem="ijb-wm-bbP" secondAttribute="leading" constant="20" id="2uT-K9-i0R"/>
+                                    <constraint firstItem="ULT-Sp-PIg" firstAttribute="top" secondItem="u11-AK-AgS" secondAttribute="bottom" constant="113" id="Ix0-gi-wbd"/>
+                                    <constraint firstItem="u11-AK-AgS" firstAttribute="top" secondItem="1Wj-iC-pdY" secondAttribute="bottom" constant="128" id="Voq-rG-LAL"/>
+                                    <constraint firstItem="1Wj-iC-pdY" firstAttribute="centerX" secondItem="Prb-Nh-08I" secondAttribute="centerX" id="X8w-Ac-N84"/>
+                                    <constraint firstItem="u11-AK-AgS" firstAttribute="centerX" secondItem="Prb-Nh-08I" secondAttribute="centerX" id="aTk-8i-Yiv"/>
+                                    <constraint firstItem="ULT-Sp-PIg" firstAttribute="leading" secondItem="Prb-Nh-08I" secondAttribute="leading" constant="20" id="hHQ-q5-bnD"/>
+                                    <constraint firstAttribute="bottom" secondItem="ULT-Sp-PIg" secondAttribute="bottom" constant="399" id="ibk-mM-w9o"/>
+                                    <constraint firstAttribute="trailing" secondItem="ULT-Sp-PIg" secondAttribute="trailing" constant="20" id="jYn-Eg-3AR"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Wj-iC-pdY" secondAttribute="trailing" id="lqH-PW-Px1"/>
+                                    <constraint firstAttribute="trailing" secondItem="u11-AK-AgS" secondAttribute="trailing" constant="20" id="uik-61-vVO"/>
+                                    <constraint firstItem="1Wj-iC-pdY" firstAttribute="top" secondItem="Prb-Nh-08I" secondAttribute="top" constant="94" id="xZd-fZ-Lhi"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="z2B-vN-0xq"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ijb-wm-bbP"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Prb-Nh-08I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2T3-k5-Eab"/>
+                            <constraint firstItem="Prb-Nh-08I" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="I3k-hd-6gK"/>
+                            <constraint firstItem="Prb-Nh-08I" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vyi-dp-u2N"/>
+                            <constraint firstItem="Prb-Nh-08I" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lQb-QM-bBj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="recastButton" destination="1Wj-iC-pdY" id="MSn-mU-7UW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
