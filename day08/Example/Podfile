@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'jdeagr2019_Example' do
+  pod 'jdeagr2019', :path => '../'
+
+  target 'jdeagr2019_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

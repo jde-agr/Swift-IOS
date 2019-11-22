@@ -1,0 +1,22 @@
+{
+  "name": "jdeagr2019",
+  "version": "0.1.0",
+  "summary": "A short description of jdeagr2019.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jde-agr/jdeagr2019",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jde-agr": "jde-agr@student.wethinkcode.co.za"
+  },
+  "source": {
+    "git": "https://github.com/jde-agr/jdeagr2019.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "jdeagr2019/Classes/**/*"
+}

@@ -1,0 +1,16 @@
+PODS:
+  - jdeagr2019 (0.1.0)
+
+DEPENDENCIES:
+  - jdeagr2019 (from `../`)
+
+EXTERNAL SOURCES:
+  jdeagr2019:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  jdeagr2019: a83f04e0ecc5fc27b8ae33a13aac3696d71bded2
+
+PODFILE CHECKSUM: 72b342d11615059e5685deee8a3550f4dd034f92
+
+COCOAPODS: 1.8.3
